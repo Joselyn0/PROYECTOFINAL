@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" &quot; integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link href="https://fonts.cdnfonts.com/css/speakeasy" rel="stylesheet">
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <title>Cuestionario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="font-family: 'SF Speakeasy', sans-serif;" >
+    
+    <div style="margin: 24px;">
+        <nav class="navbar navbar-light" style="background-color: rgb(118, 255, 255);">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="menu.html">Menu</a>
+                    </li>
+                    <li>
+                        <a href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="activate">
+                        <a href="movie1 (1).html">Movies</a>
+                    </li>
+                    <li class="activate">
+                        <a href="cuestionario.html">Cuestionario</a>
+                    </li>
+                    <li class="activate">
+                        <a href="perfil.html">Perfil</a>
+                    </li>
+                    <li class="activate">
+                        <a href="cal.html">Calculadora</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div style="margin: 24px;">
+        <div class="quiz-container" id="quiz">
+            <div class="quiz-header">
+                <div class="image-cotainer">
+                    <img src="imagen.jpg" alt="Imagen" id="question-image" style="width: 200px; height: 200px;">
+                </div>
+                <h2 id="question">Question Test</h2>
+                <ul>
+                    <li>
+                        <input type="radio" name="answer" id="a" class="answer">
+                        <label for="a" id="a_text">question</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="answer" id="b" class="answer">
+                        <label for="b" id="b_text">question</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="answer" id="c" class="answer">
+                        <label for="c" id="c_text">question</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="answer" id="d" class="answer">
+                        <label for="d" id="d_text">question</label>
+                    </li>
+                </ul>
+            </div>
+            <button id="submit">Siguiente</button>
+
+        </div>
+        <style>
+        body {
+            align-items: center;
+            justify-content: center;
+            overflow: 0;
+            margin: 0;
+            }
+        .quiz-container{
+            background-color: #fff;
+            background-image: linear-gradient(315deg,  #81a688 0%, #cde4ff 100%);
+            border-radius: 10px ;
+            box-shadow: 0 0 10px rgb(59, 104, 99);
+            width: 400px;
+            overflow: hidden;
+        }
+        .quiz-header{
+            padding: 15px;
+        }
+        h2{
+            padding: 10px;
+            text-align: center;
+            margin: 0;
+        }
+        ul{
+            list-style: none;
+            padding: 0;
+        }
+        ul li{
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        ul li label{
+            cursor: pointer;
+        }
+        button{
+            background-color: #0d1810;
+            color: #cde4ff;
+            border: none;
+            display: block;
+            width: 100%;
+            cursor: pointer;
+            font-size: 20px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            padding: 20px;
+        }
+        button:hover{
+            background-color: rgb(117, 153, 110);
+        }
+        button:focus{
+            outline: none;
+            background-color: #0d1810;
+        }
+
+        </style>
+        <script>
+            const quizData = [
+                {
+                    question: "Quien es este persoonaje de sanrio?",
+                    image: "quiz1.jpg",
+                    a: "purin",
+                    b: "my melody",
+                    c: "kuromi",
+                    d: "hello kitty",
+                    correct: "b",
+                },
+                {
+                    question: "Quien es este integrante de sanrio?",
+                    image: "quiz1.jpg",
+                    a: "keroppi",
+                    b: "pochacco",
+                    c: "cinnamoroll",
+                    d: "badtz maru",
+                    correct: "b",
+                },
+            ];
+            const quiz = document.getElementById('quiz');
+            const answerEls = document.querySelectorAll('.answer');
+            const questionEl = document.getElementById('question');
+            
+
+            const a_text = document.getElementById('a_text');
+            const b_text = document.getElementById('b_text');
+            const c_text = document.getElementById('c_text');
+            const d_text = document.getElementById('d_text');
+
+            const submitBtn = document.getElementById('submit');
+
+            let currentQuiz = 0;
+            let score = 0; //puntaje del usuario
+
+            loadQuiz(); //carga la primera pregunta
+
+            function loadQuiz(){
+                deselecAnswer();
+                const currentQuiz = quizData[currentQuiz]
+                questionEl.innerText = currentQuizData.question;
+
+                a_text.innerText = currentQuiz.a;
+                b_text.innerText = currentQuiz.b;
+                c_text.innerText = currentQuiz.c;
+                d_text.innerText = currentQuiz.d;
+
+                const questionImage = document.getElementById('question-image');
+                questionImage.src = currentQuizData.image;
+            }
+
+            function deselecAnswer(){
+                answerEls.forEach(answerEl => answerEl.checked = false);
+            }
+
+            function getSelected(){
+                let answer;
+                answerEls.forEach(answerEl => {
+                    if (answerEl.checked) {
+                        answer = answerEl.id;
+                    }
+                });
+                return answer;
+            }
+            submitBtn.addEventListener('clic', () =>{
+                const answer = getSelected();
+                if(answer){
+                if(answer === quizData[currentQuiz].correct){
+                    score++;
+                } 
+                currentQuiz++;
+                if(currentQuiz< quizData.length){
+                    loadQuiz();
+                }  else{
+                    quiz.innerHTML = `
+                    <h2>Contestaste ${score} / ${quizData.length} de preguntas correctamente</h2>
+                    
+                    <button onclick = "location.reload()">Volver</button>
+                    `
+                } 
+                }
+                
+            })
+
+        </script>
+
+    </div>
+
+    <footer>
+    <div class="container">
+    <div class=".footer-content">
+    <div class="footer-selection about">
+    
+    <h2>Contactame</h2>
+    <p>Si estas interesado en contactarme, puedes hacerlo a traves de cualquiera de las siguientes redes sociales: </p>
+    
+    <a href="http://fasebook.com/miperfil" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="http://instagram.com/miperfil" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="http://twitter.com/miperfil" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="http://discord.com/miperfil" target="_blank"><i class="fab fa-discord"></i></a>
+    <a href="http://pinterest.com/miperfil" target="_blank"><i class="fab fa-pinterest"></i></a>
+
+    <style>
+        footer{
+    background-color: rgb(100, 148, 107);
+    color: #0d1810;
+    padding: 30px 0;
+    }
+    .container{
+    max-width: 800px;
+    margin: auto;
+    padding: 0 20px;
+    
+    }
+    .footer-content{
+    display: flex;
+    flex-wrap: wrap;
+    }
+    .footer-section{
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    }
+    .about{
+    text-align: center;
+    }
+    .abouth2{
+    margin-bottom: 20px;
+    }
+    .about p{
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    }
+    .contact-links{
+    display: flex;
+    justify-content: center;
+    }
+    .contact-links a{
+    display: inline-block;
+    color: #fff;
+    font-size: 24px;
+    margin: 0 10px;
+    transition: all 0.3 ease;
+    
+    transform: translateY(15px);
+    
+    }
+    </style>
+    </footer>
+    
+</body>
+</html>

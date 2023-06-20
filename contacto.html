@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" &quot; integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <title> Pagina 1 </title>
+</head>
+<body style="background-color:#a4e0e0;">
+    <div style="margin: 24px;">
+        <nav class="navbar navbar-light" style="background-color: rgb(197, 231, 165);">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="menu.html">Menu</a>
+                    </li>
+                    <li>
+                        <a href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="activate">
+                        <a href="movie1 (1).html">Movies</a>
+                    </li>
+                    <li class="activate">
+                        <a href="cuestionario.html">Cuestionario</a>
+                    </li>
+                    <li class="activate">
+                        <a href="perfil.html">Perfil</a>
+                    </li>
+                    <li class="activate">
+                        <a href="cal.html">Calculadora</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <nav class="navbar navbar" style="background-color: #9ddada;">
+        <div class="jumbotron jumbotron-fluid"style="background-color: #9ddada;" >
+            <div class="container" style="background-color: #a4e0e0;">
+              <h1 class="display-4">Fisica</h1>
+              <p class="lead">La física es una ciencia que estudia sistemáticamente los fenómenos naturales, tratando de encontrar las leyes básicas que los rigen. Utiliza las matemáticas como su lenguaje y combina estudios teóricos con experimentales para obtener las leyes correctas.</p>
+
+              <form id="formulario">
+                <label for="distancia">Distancia</label>
+                <input type="text" id="distancia" name="distancia">
+                <select id="distanciaUnidad">
+                    <option value="metros">metros</option>
+                    <option value="pies">pies</option>
+                    <option value="kilometros">kilometros</option>
+                    <option value="milla">milla</option>
+    
+                </select>
+    
+                <br>
+    
+                <label for="tiempo">tiempo</label>
+                <input type="text" id="tiempo" name="tiempo">
+                <select id="tiempoUnidad">
+                    <option value="segundos">segundos</option>
+                    <option value="horas">horas</option>
+                </select>
+    
+                <br>
+    
+                <label for="velocidadUnidad">Unidades de velocidad: </label>
+                <select id="velocidadUnidad">
+                    <option value="metros_por_segundo">m/s</option>
+                    <option value="pies_por_segundo">ft/s</option>
+                    <option value="kilometros_por_hora">km/h</option>
+                    <option value="millas_por_hora">mi/h</option>
+                </select>
+    
+                <br>
+    
+                <input type="button" value="Calcular" onclick="Calcular()">
+    
+              </form>
+              <p id="resultado"></p>
+    
+              <p style="color:#ada4b9; background-color: darkslateblue;">Velocidad: <span id="velocidad"></span></p>
+              <p style="color:#b9a6af; background-color:#8a244b ;">Aceleracion: <span id="aceleracion"></span></p>
+              <p style="color:#dfa1c7; background-color: crimson;">Rapidez: <span id="rapidez"></span></p>
+            </nav>
+            </div>
+          </div>
+          <script>
+            function Calcular(){
+                //Obtener valores del formulario
+
+                const distancia= parseFloat(document.getElementById('distancia').value);
+                const tiempo= parseFloat(document.getElementById('tiempo').value);
+                const distanciaUnidad= document.getElementById('distanciaUnidad').value;
+                const tiempoUnidad= document.getElementById('tiempoUnidad').value;
+                const velocidadUnidad= document.getElementById('velocidadUnidad').value;
+
+
+                //Convertir Unidades a Sistema Metrico(SI)
+                let distanciaSI = 00;
+                let tiempoSI = 00;
+                if (distanciaUnidad==='metros'){
+                    distanciaSI = distancia;
+                }
+                else if (distanciaUnidad==='pies'){
+                    distanciaSI = distancia / 3.281;
+                }
+
+                if (tiempoUnidad==='segundos'){
+                    tiempoSI=tiempo;
+                }
+                else if (tiempoUnidad==='horas'){
+                    tiempoSI=tiempo*3600;
+                }
+
+                //Calcular la velocidad, aceleracion y rapidez
+                let velocidad = 00;
+                let aceleracion = 00;
+                let rapidez = 00;
+                if (velocidadUnidad==='metros_por_segundo'){
+                    velocidad = distanciaSI / tiempoSI;
+                    rapidez = velocidad //esta no es la formula
+                    aceleracion = velocidad/tiempoSI
+                }
+                else if (velocidadUnidad==='pies_por_segundo'){
+                    velocidad = (distanciaSI*3.281) / tiempoSI;
+                    rapidez = velocidad //esta no es la formula
+                    aceleracion = velocidad/tiempoSI
+                }
+                else if (velocidadUnidad==='kilometros_por_hora'){
+                    velocidad = (distanciaSI*1000) / (tiempoSI*3600);
+                    rapidez = velocidad //esta no es la formula
+                    aceleracion = velocidad/tiempoSI
+                }
+                else if (velocidadUnidad==='millas_por_hora'){
+                    velocidad = (distanciaSI*1609) / (tiempoSI*3600);
+                    rapidez = velocidad //esta no es la formula
+                    aceleracion = velocidad/tiempoSI
+                }
+
+                //Mostrar los resultados
+                let resultados = '';
+
+                document.getElementById('velocidad').textContent=velocidad.toFixed(2) + ' ' + velocidadUnidad;
+                document.getElementById('aceleracion').textContent=aceleracion.toFixed(2) + ' ' + velocidadUnidad;
+                document.getElementById('rapidez').textContent=rapidez.toFixed(2) + ' ' + velocidadUnidad;
+
+                document.getElementById('resultado').innerHTML=resultados;
+            }
+            
+          </script>
+
+          <footer>
+            <style>
+                footer{
+                background-color:rgb(197, 231, 165);
+                color: #0d1810;
+                padding: 30px 0;
+            }
+            .container{
+                max-width: 800px;
+                margin: auto;
+                padding: 0 20px;
+
+            }
+            .footer-content{
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .footer-section{
+                width: 100%;
+                padding: 20px;
+                box-sizing: border-box;
+            }
+            .about{
+                text-align: center;
+            }
+            .abouth2{
+                margin-bottom: 20px;
+            }
+            .about p{
+                font-size: 18px;
+                line-height: 1.5;
+                margin-bottom: 20px;
+            }
+            .contact-links{
+                display: flex;
+                justify-content: center;
+            }
+            .contact-links a{
+                display: inline-block;
+                color: #fff;
+                font-size: 24px;
+                margin: 0 10px;
+                transition: all 0.3 ease;
+                
+                transform: translateY(15px);
+
+            }
+            </style>
+            <div class="container">
+                <div class=".footer-content">
+                    <div class="footer-selection about">
+
+           <h2>Contactame</h2>
+           <p>Si estas interesado en contactarme, puedes hacerlo a traves de cualquiera de las siguientes redes sociales: </p>
+           <a href="http://fasebook.com/miperfil" target="_blank"><i class="fab fa-facebook"></i></a>
+           <a href="http://instagram.com/miperfil" target="_blank"><i class="fab fa-instagram"></i></a>
+           <a href="http://twitter.com/miperfil" target="_blank"><i class="fab fa-twitter"></i></a>
+           <a href="http://discord.com/miperfil" target="_blank"><i class="fab fa-discord"></i></a>
+       <a href="http://pinterest.com/miperfil" target="_blank"><i class="fab fa-pinterest"></i></a>
+       <a href="http://pinterest.com/miperfil" target="_blank"><i class="fab fa-pinterest"></i></a>
+          </footer>
+        </div>
+    </div>
+</div>
+
+          <script>
+            const redessociales=document.
+            querySelectorAll('.contact-links');
+            redessociales.forEach(link =>{
+                link.addEventListener('click', e=>{
+                    e.preventDefault();
+                    window.open(link.href, '_blank');
+                });
+            });
+          </script>
+          <div id="footer"></div>
+          <script>
+            $(function(){
+                $("#footer").load("/4A/footer.html");
+            });
+            
+          </script>
+</body>
+</html>

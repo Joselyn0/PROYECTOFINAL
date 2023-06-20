@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <title>Pagina 1</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body style="font-family: 'Courier New', monospace;">
+    <div style="margin: 24px;">
+    <nav class="navbar navbar-inverse navbar-stick-static-top">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="index.html">Inicio</a>
+                </li>
+                <li>
+                    <a href="menu.html">Menu</a>
+                </li>
+                <li>
+                    <a href="pedido.html">Pedido</a>
+                </li>
+                <li>
+                    <a href="contacto.html">Contacto</a>
+                </li>
+                <li class="activate">
+                    <a href="movie1 (1).html">Movies</a>
+                </li>
+                <li>
+                    <a href="cuestionario.html">Cuestionario</a>
+                </li>
+                <li>
+                    <a href="perfil.html">Perfil</a>
+                </li>
+                <li>
+                    <a href="cal.html">Calculadora</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<h1 style="text-align: center;">PEDIDO</h1><br>
+
+<form id="pedido">
+    <p>Nombre:<input type="text" id="nombre" name="nombre" size="30"></p>
+    <p>Apellido:<input type="text" id="apellido" name="apellido" size="30"></p>
+    <p>Telefono:<input type="text" id="telefono" name="telefono" size="28"></p>
+    <p>Direccion:<input type="text" id="direccion" name="direccion" size="30"></p>
+    <p>Colonia:<input type="text" id="colonia" name="colonia" size="30"></p>
+<br>
+<select name="menu" id="menu">     
+    <option value="hamburguesa">Hamburguesa</option>
+    <option value="tacos">Barbacoa</option>
+    <option value="enchiladas">Papas fritas</option>
+    <option value="enchiladas">Quesadillas</option>
+    <option value="enchiladas">Tacos</option>
+    <option value="enchiladas">Tortas</option>
+    <option value="enchiladas">Coctel de camaron</option>
+    <option value="pastel">Pastel</option>
+    <option value="aguasf">Aguas de sabor</option>
+    <option value="enchiladas">Refrescos</option>
+</select>
+    <title> VERDURAS </title>
+    <p>Vegetales:
+        <input type="checkbox" id="tomate"><label for="tomate">Cebolla</label>
+        <input type="checkbox" id="cebolla"><label for="cebolla">Pepinos</label>
+        <input type="checkbox" id="lechuga"><label for="lechuga">Lechuga</label>
+        <input type="checkbox" id="pepinos"><label for="pepinos">Tomate</label>
+    </p>
+
+    <title> PASTEL </title>
+    <p>Pastel Tipo:
+        <input type="checkbox" id="chocolate"><label for="chocolate">Chocolate</label>
+        <input type="checkbox" id="vainilla"><label for="vainilla">Fresa</label>
+        <input type="checkbox" id="tresl"><label for="tresl">Vainilla</label>
+        <input type="checkbox" id="pays"><label for="pays">Tres leches</label>
+    </p>
+
+    <input type="submit" value="Enviar">
+    <input type="reset" value="Borrar">
+</form>
+<script>
+    const form=document.getElementById("pedido");
+    form.addEventListener ("submit", function(event){
+        event.preventDefault();
+        const formData=new FormData(form);
+        const orden={
+            nombre:formData.get("nombre"),
+            apellido:formData.get("apellido"),
+            telefono:formData.get("telefono"),
+            direccion:formData.get("direccion"),
+            colonia:formData.get("colonia"),
+         };
+        localStorage.setItem("orden", JSON.stringify(orden));
+        window.location.href="pedidorealizado.html";
+    });
+</script>
+
+</body>
+</html>

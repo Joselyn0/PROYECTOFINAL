@@ -1,0 +1,74 @@
+body{
+    background-color:#585d5e;
+}
+header{
+    background-color: #808D8E;
+    padding: 25px;
+}
+nav{
+    background-color:#A3A5C3 ;
+}
+section{
+    background-color:#947EB0 ;
+}
+article{
+    background-color:#766C7F ;
+}
+aside{
+    background-color:#05204A ;
+    width: 80%;
+    float: left;
+}
+footer{
+    background-color:#2C363F ;
+    }
+    .container{
+        max-width: 800px;
+        margin: auto;
+        padding: 0 20px;
+
+    }
+    .footer-content{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .footer-section{
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .about{
+        text-align: center;
+    }
+    .abouth2{
+        margin-bottom: 20px;
+    }
+    .about p{
+        font-size: 18px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+    .contact-links{
+        display: flex;
+        justify-content: center;
+    }
+    .contact-links a{
+        display: inline-block;
+        color: #fff;
+        font-size: 24px;
+        margin: 0 10px;
+        transition: all 0.3 ease;
+    }
+    .contact-links a:hover {
+        transform: translateY(15px);
+    }
+    table{
+        background-color: #3a3a3a;
+        width: 700px;
+        position: center;
+    }
+    cc{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bold;
+        color:grey;
+    }
